@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamWayAI - Подготовка к ОРТ и Вступительным Экзаменам</title>
+    <meta name="description" content="Умная платформа для подготовки к ОРТ и вступительным экзаменам в Кыргызстане с AI-ассистентом и персонализированным планом обучения">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">ExamWayAI</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-page="home">Главная</a>
+                <a href="#practice" class="nav-link" data-page="practice">Практика</a>
+                <a href="#battle" class="nav-link" data-page="battle">Битва Знаний</a>
+                <a href="#facts" class="nav-link" data-page="facts">Интересные Факты</a>
+                <a href="#progress" class="nav-link" data-page="progress">Прогресс</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" id="aiAssistantBtn" title="AI Ассистент">
+                    <span>🤖</span>
+                </button>
+                <button class="btn-primary" id="authBtn">Войти</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section class="page active" id="homePage">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Подготовься к <span class="gradient-text">ОРТ</span> с AI
+                    </h1>
+                    <p class="hero-subtitle">
+                        Персонализированное обучение, умный AI-ассистент и увлекательные битвы знаний
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn-large btn-primary" id="startDiagnosticBtn">
+                            <span>🎯</span> Начать Диагностический Тест
+                        </button>
+                        <button class="btn-large btn-secondary" id="continueStudyBtn">
+                            <span>📚</span> Продолжить Обучение
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <div class="floating-card card-1">
+                        <span class="card-icon">📊</span>
+                        <span class="card-text">Прогресс в реальном времени</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <span class="card-icon">🤖</span>
+                        <span class="card-text">AI Помощник 24/7</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <span class="card-icon">⚔️</span>
+                        <span class="card-text">Битвы с друзьями</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Plan Section -->
+            <div class="section-container" id="studyPlanSection" style="display: none;">
+                <h2 class="section-title">📅 Ваш Персональный План Обучения</h2>
+                <div class="study-plan-grid" id="studyPlanGrid"></div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="section-container">
+                <h2 class="section-title">📈 Быстрая Статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value" id="overallProgress">0%</div>
+                        <div class="stat-label">Общий Прогресс</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="testsCompleted">0</div>
+                        <div class="stat-label">Тестов Пройдено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="currentStreak">0</div>
+                        <div class="stat-label">Дней Подряд</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value" id="totalPoints">0</div>
+                        <div class="stat-label">Баллов Заработано</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subjects Overview -->
+            <div class="section-container">
+                <h2 class="section-title">📚 Предметы ОРТ</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card" data-subject="math">
+                        <div class="subject-icon">🔢</div>
+                        <h3 class="subject-name">Математика</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="subject-progress">0% освоено</p>
+                    </div>
+                    <div class="subject-card" data-subject="russian">
+                        <div class="subject-icon">📖</div>
+                        <h3 class="subject-name">Русский Язык</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="subject-progress">0% освоено</p>
+                    </div>
+                    <div class="subject-card" data-subject="kyrgyz">
+                        <div class="subject-icon">🇰🇬</div>
+                        <h3 class="subject-name">Кыргызский Язык</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="subject-progress">0% освоено</p>
+                    </div>
+                    <div class="subject-card" data-subject="history">
+                        <div class="subject-icon">🏛️</div>
+                        <h3 class="subject-name">История Кыргызстана</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="subject-progress">0% освоено</p>
+                    </div>
+                    <div class="subject-card" data-subject="social">
+                        <div class="subject-icon">🌍</div>
+                        <h3 class="subject-name">Обществознание</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="subject-progress">0% освоено</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Page -->
+        <section class="page" id="practicePage">
+            <div class="page-header">
+                <h1 class="page-title">📝 Практика по Темам</h1>
+                <p class="page-subtitle">Выберите предмет и тему для практики</p>
+            </div>
+            <div class="practice-container">
+                <div class="subject-selector" id="subjectSelector"></div>
+                <div class="topic-list" id="topicList"></div>
+            </div>
+        </section>
+
+        <!-- Battle Page -->
+        <section class="page" id="battlePage">
+            <div class="page-header">
+                <h1 class="page-title">⚔️ Битва Знаний</h1>
+                <p class="page-subtitle">Бросьте вызов другу и проверьте свои знания вместе!</p>
+            </div>
+            <div class="battle-container">
+                <div class="battle-modes">
+                    <div class="battle-mode-card" id="createBattleBtn">
+                        <div class="battle-icon">🎮</div>
+                        <h3>Создать Битву</h3>
+                        <p>Пригласите друга и начните совместное испытание</p>
+                        <button class="btn-primary">Создать</button>
+                    </div>
+                    <div class="battle-mode-card" id="joinBattleBtn">
+                        <div class="battle-icon">🔗</div>
+                        <h3>Присоединиться</h3>
+                        <p>Введите код приглашения от друга</p>
+                        <button class="btn-secondary">Присоединиться</button>
+                    </div>
+                </div>
+                <div class="battle-history" id="battleHistory">
+                    <h3>История Битв</h3>
+                    <div class="battle-list" id="battleList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facts Page -->
+        <section class="page" id="factsPage">
+            <div class="page-header">
+                <h1 class="page-title">💡 Интересные Факты</h1>
+                <p class="page-subtitle">Узнавайте новое каждый день</p>
+            </div>
+            <div class="facts-container">
+                <div class="fact-card-swiper" id="factSwiper">
+                    <button class="swipe-btn prev" id="prevFactBtn">‹</button>
+                    <div class="fact-card active" id="currentFact">
+                        <div class="fact-category">Математика</div>
+                        <div class="fact-content">
+                            <p>Загрузка интересных фактов...</p>
+                        </div>
+                        <div class="fact-footer">
+                            <span class="fact-number">1 / 10</span>
+                            <button class="btn-icon favorite-btn">❤️</button>
+                        </div>
+                    </div>
+                    <button class="swipe-btn next" id="nextFactBtn">›</button>
+                </div>
+                <div class="fact-categories" id="factCategories"></div>
+            </div>
+        </section>
+
+        <!-- Progress Page -->
+        <section class="page" id="progressPage">
+            <div class="page-header">
+                <h1 class="page-title">📊 Ваш Прогресс</h1>
+                <p class="page-subtitle">Отслеживайте свои достижения и улучшения</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-overview">
+                    <div class="progress-chart" id="progressChart">
+                        <canvas id="progressCanvas"></canvas>
+                    </div>
+                    <div class="weak-topics" id="weakTopics">
+                        <h3>🎯 Слабые Темы</h3>
+                        <div class="weak-topics-list" id="weakTopicsList"></div>
+                    </div>
+                </div>
+                <div class="test-history" id="testHistory">
+                    <h3>📝 История Тестов</h3>
+                    <div class="test-list" id="testList"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Assistant Chat -->
+    <div class="ai-chat-container" id="aiChatContainer">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <span class="ai-icon">🤖</span>
+                <span>AI Ассистент</span>
+            </div>
+            <button class="btn-icon close-chat" id="closeChatBtn">✕</button>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>Привет! Я твой AI-ассистент. Я помогу тебе с подготовкой к ОРТ. Задавай любые вопросы по предметам, и я объясню простым языком!</p>
+                </div>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiChatInput" placeholder="Задайте вопрос AI ассистенту...">
+            <button class="btn-icon send-btn" id="sendMessageBtn">📤</button>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход / Регистрация</h2>
+                <button class="btn-icon close-modal" data-modal="authModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+                <div class="auth-form" id="loginForm">
+                    <input type="email" placeholder="Email" class="input-field" id="loginEmail">
+                    <input type="password" placeholder="Пароль" class="input-field" id="loginPassword">
+                    <button class="btn-primary full-width" id="loginBtn">Войти</button>
+                    <div class="divider">или</div>
+                    <button class="btn-google" id="googleLoginBtn">
+                        <span>G</span> Войти через Google
+                    </button>
+                </div>
+                <div class="auth-form" id="registerForm" style="display: none;">
+                    <input type="text" placeholder="Имя" class="input-field" id="registerName">
+                    <input type="email" placeholder="Email" class="input-field" id="registerEmail">
+                    <input type="password" placeholder="Пароль" class="input-field" id="registerPassword">
+                    <button class="btn-primary full-width" id="registerBtn">Зарегистрироваться</button>
+                    <div class="divider">или</div>
+                    <button class="btn-google" id="googleRegisterBtn">
+                        <span>G</span> Регистрация через Google
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnostic Test Modal -->
+    <div class="modal" id="diagnosticModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>🎯 Диагностический Тест</h2>
+                <button class="btn-icon close-modal" data-modal="diagnosticModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="test-progress">
+                    <div class="test-progress-bar">
+                        <div class="test-progress-fill" id="testProgressFill"></div>
+                    </div>
+                    <div class="test-progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">25</span>
+                    </div>
+                </div>
+                <div class="test-question" id="testQuestion">
+                    <h3 class="question-text" id="questionText"></h3>
+                    <div class="question-options" id="questionOptions"></div>
+                </div>
+                <div class="test-actions">
+                    <button class="btn-secondary" id="prevQuestionBtn" disabled>Назад</button>
+                    <button class="btn-primary" id="nextQuestionBtn">Далее</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎉 Результаты Теста</h2>
+                <button class="btn-icon close-modal" data-modal="resultsModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="results-container" id="resultsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quizModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="quizTitle">Практика</h2>
+                <button class="btn-icon close-modal" data-modal="quizModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="quiz-container" id="quizContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Battle Room Modal -->
+    <div class="modal" id="battleRoomModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>⚔️ Битва Знаний</h2>
+                <button class="btn-icon close-modal" data-modal="battleRoomModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="battle-room" id="battleRoom"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
